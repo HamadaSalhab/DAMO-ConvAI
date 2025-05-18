@@ -52,6 +52,7 @@ class Simulater():
                 logging.info(response)
                 api_name, param_dict = parse_api_call(response)
                 try:
+                    print("param_dict simulator: ", param_dict)
                     result = self.tool_manager.api_call(api_name, **param_dict)
                 except Exception as e:
                     api_result = '(API) ' + str(e)

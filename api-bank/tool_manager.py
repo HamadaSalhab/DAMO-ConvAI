@@ -4,7 +4,7 @@ import os
 import json
 from api_call_extraction import parse_api_call
 class ToolManager:
-    def __init__(self, apis_dir='./apis') -> None:
+    def __init__(self, apis_dir='./apis', init_database_dir='./init_database') -> None:
         import importlib.util
 
         all_apis = []
@@ -23,7 +23,6 @@ class ToolManager:
         classes = all_apis
 
         self.init_databases = {}
-        init_database_dir = './init_database'
         for file in os.listdir(init_database_dir):
             if file.endswith('.json'):
                 database_name = file.split('.')[0]
@@ -140,9 +139,12 @@ class ToolManager:
         input_parameters = self.get_api_by_name(tool_name)['input_parameters'] # {'username': {'type': 'str', 'description': 'The username of the user.'}, 'password': {'type': 'str', 'description': 'The password of the user.'}}
         # assert len(kwargs) == len(input_parameters), 'invalid number of parameters. expected: {}, got: {}'.format(len(input_parameters), len(kwargs))
 
+        print("kwargs: ", kwargs)
         processed_parameters = {}
         for input_key in kwargs:
             input_value = kwargs[input_key]
+            print("input_key: ", input_key)
+            print("input_parameters: ", input_parameters)
             assert input_key in input_parameters, 'invalid parameter name. parameter: {}'.format(input_key)
             required_para = input_parameters[input_key]
 

@@ -88,6 +88,7 @@ class Evaluator:
             if api_name != ground_truth['api_name']:
                 return False, 'API Name Mismatch: {} vs {}'.format(api_name, ground_truth['api_name'])
             # try:
+            print("param_dict evaluator_by_json: ", param_dict)
             result = tool_manager.api_call(api_name, **param_dict)
             # except Exception as e:
             #     return False, str(e)

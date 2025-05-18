@@ -61,6 +61,7 @@ def test_json():
             try:
                 if pred_api_name == 'ToolSearcher':
                     pred_param_dict['keywords'] = split_by_uppercase(pred_param_dict['keywords'])
+                print("param_dict lv3_evaluator: ", pred_param_dict)
                 pred_result = tool_manager.api_call(pred_api_name, **pred_param_dict)
             except TypeError as e:
                 logging.warning('TypeError: {} {}'.format(str(e), pred_id))
